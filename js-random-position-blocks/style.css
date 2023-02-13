@@ -1,0 +1,22 @@
+.wrapper {
+    background: #000;
+    width:844px;
+    height: 555px;
+    margin:50px auto;
+    border: 1px white solid;
+    position: relative;
+    cursor: none;
+}
+
+.options {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.block {
+    display: block;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    border: 1px red solid;
+}
