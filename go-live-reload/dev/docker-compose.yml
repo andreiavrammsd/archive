@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app1:
+    build:
+      context: .
+      args:
+        APP: app1
+    volumes:
+      - ../:/go/src/github.com/andreiavrammsd/go-live-reload
+    restart: unless-stopped
+  app2:
+    build:
+      context: .
+      args:
+        APP: app2
+    volumes:
+      - ../:/go/src/github.com/andreiavrammsd/go-live-reload
+    restart: unless-stopped
