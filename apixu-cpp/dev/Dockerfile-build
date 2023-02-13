@@ -1,0 +1,18 @@
+FROM ubuntu:18.04
+
+RUN apt update && apt install -y g++ make libcurl4-openssl-dev valgrind wget git && \
+    wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2-Linux-x86_64.tar.gz && \
+    tar -xvf cmake-3.15.2-Linux-x86_64.tar.gz && \
+    ln -s /cmake-3.15.2-Linux-x86_64/bin/cmake /usr/bin/cmake && \
+    ln -s /cmake-3.15.2-Linux-x86_64/bin/cpack /usr/bin/cpack
+
+CMD mkdir -p ./cmake-build-lib/ && cd ./cmake-build-lib \
+    && cmake .. -DCMAKE_INSTALL_PREFIX=_install \
+    && make -j 6 lib_static \
+    && make -j 6 lib_shared
+
+# && cmake .. -DCMAKE_INSTALL_PREFIX=_install \
+# && make && make install \
+# shared: gcc -I /src/include/ -c -Wall -Werror -fpic $(find /src/src -name "*.cpp")
+# sample app: gcc -I /src/include/ -L /opt/apixu/ -Wall -o conditions -std=c++11 conditions.cpp -lstdc++ -lapixu -lcurl
+# gcc -I /src/_install/shared/opt/apixu/include/ -L /src/_install/static/opt/apixu/lib/ -Wall -o conditions -std=c++11 conditions.cpp -lstdc++ -lapixu -lcurl
