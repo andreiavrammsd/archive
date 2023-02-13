@@ -1,0 +1,38 @@
+[  
+   {  
+      "id":794151,
+      "name":"Libourne, Aquitaine, France",
+      "region":"Aquitaine",
+      "country":"France",
+      "lat":44.92,
+      "lon":-0.23,
+      "url":"libourne-aquitaine-france"
+   },
+   {  
+      "id":776897,
+      "name":"Fronsac, Aquitaine, France",
+      "region":"Aquitaine",
+      "country":"France",
+      "lat":44.92,
+      "lon":-0.27,
+      "url":"fronsac-aquitaine-france"
+   },
+   {  
+      "id":805044,
+      "name":"Pomerol, Aquitaine, France",
+      "region":"Aquitaine",
+      "country":"France",
+      "lat":44.93,
+      "lon":-0.2,
+      "url":"pomerol-aquitaine-france"
+   },
+   {  
+      "id":790905,
+      "name":"Les Billaux, Aquitaine, France",
+      "region":"Aquitaine",
+      "country":"France",
+      "lat":44.95,
+      "lon":-0.23,
+      "url":"les-billaux-aquitaine-france"
+   }
+]
