@@ -1,0 +1,42 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides: <PACKAGE>
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: <SHORT_DESCRIPTION>
+# Description: <DESCRIPTION>
+# 
+### END INIT INFO
+
+DAEMON=<DAEMON>
+PIDFILE=/run/<PACKAGE>.pid
+LOGFILE=/var/log/<PACKAGE>.log
+touch $LOGFILE
+
+do_start() {
+    start-stop-daemon -S --exec $DAEMON -p $PIDFILE -m -R 1 -b >> $LOGFILE
+}
+
+do_stop() {
+    start-stop-daemon -K --exec $DAEMON -p $PIDFILE -m -R 1 >> $LOGFILE
+    rm $PIDFILE
+}
+
+case "$1" in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    restart)
+        do_stop
+        do_start
+    ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}" >&2
+        exit 3
+    ;;
+esac

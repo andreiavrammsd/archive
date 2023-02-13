@@ -1,0 +1,10 @@
+Package: <PACKAGE>
+Version: <VERSION>
+Section: <SECTION>
+Priority: <PRIORITY>
+Architecture: <ARCHITECTURE>
+Installed-Size: <SIZE>
+Maintainer: <MAINTAINER>
+Description: <SHORT_DESCRIPTION>
+ <DESCRIPTION>
+ (Checksum <CHECKSUM_ALGORITHM>: <CHECKSUM_HASH>)

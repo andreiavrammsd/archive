@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+    pkg:
+      build: .
+      env_file: .env
+      volumes:
+        - ./:/pkg
+        - $PROJECT_PATH:/go/src/$PACKAGE
