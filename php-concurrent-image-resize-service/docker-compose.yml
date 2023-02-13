@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    volumes:
+      - ./:/src
+      - ./images:/images
+    working_dir: /src
+    command: ./app
