@@ -1,0 +1,7 @@
+agendav1_1:
+    resource: "@AgendaBundle/Resources/config/routing/v1_1.yml"
+    prefix:   /
+
+agenda:
+    resource: "@AgendaBundle/Resources/config/routing/default.yml"
+    prefix:   /

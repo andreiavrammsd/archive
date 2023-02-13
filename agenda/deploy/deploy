@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+git pull --rebase
+phpunit -c ../app/phpunit.xml.dist
+php ../app/console doctrine:migrations:migrate
+php ../app/console cache:warm
+php -r "apc_clear_cache()";
