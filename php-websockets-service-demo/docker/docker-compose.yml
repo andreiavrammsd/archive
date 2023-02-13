@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  zonga-socks:
+    build: ./zonga-socks
+    ports:
+      - "666:666"
+    restart: on-failure
+    volumes:
+      - ../:/zonga
+    hostname: zonga-socks
+  zonga-socks-storage:
+    image: redis:3.0.7
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    expose:
+      - "6379"
+    hostname: zonga-socks-storage
