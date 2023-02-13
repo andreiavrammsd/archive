@@ -1,0 +1,5 @@
+.idea
+logs/*
+!logs/.gitkeep
+projects/*
+!projects/project.properties.sample

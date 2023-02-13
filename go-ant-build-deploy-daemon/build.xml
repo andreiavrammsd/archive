@@ -1,0 +1,118 @@
+<project name="go-deploy" default="all" basedir=".">
+
+    <tstamp>
+        <format property="timestamp" pattern="yyyy-MM-dd-HH-mm-ss"/>
+    </tstamp>
+
+    <scriptdef name="generateguid" language="javascript">
+        <attribute name="property"/>
+        <![CDATA[
+        importClass( java.util.UUID );
+    
+        project.setProperty( attributes.get( "property" ), UUID.randomUUID() );
+        ]]>
+    </scriptdef>
+
+    <generateguid property="tmpname"/>
+
+    <property environment="env"/>
+    <property name="GOBINPATH" value="${env.GOPATH}bin"/>
+    <property name="GOSRCPATH" value="${env.GOPATH}src"/>
+    <property name="PROJECTDIR" value="${GOSRCPATH}/${tmpname}"/>
+    <property name="LOGFILE" value="./logs/${timestamp}-${tmpname}"/>
+    <property name="INIT_SUFFIX" value="-go-ant"/>
+    <property name="INIT_FILENAME" value="daemon-${deploy.filename}${INIT_SUFFIX}"/>
+    <property name="INIT_TMP" value="/tmp/${INIT_FILENAME}"/>
+
+    <record name="${LOGFILE}" action="start" append="false" loglevel="info"/>
+
+    <target name="all" depends="init, src, build, test, deploy, daemon, cleanup">
+    </target>
+
+    <target name="init" description="Init">
+        <echo message="Project: ${project.repository}"/>
+    </target>
+
+    <target name="src" description="Get project src">
+        <echo message="Retrieving source code..."/>
+        <exec executable="git" failonerror="true">
+            <arg value="clone"/>
+            <arg value="${project.repository}"/>
+            <arg value="-b"/>
+            <arg value="${project.branch}"/>
+            <arg value="${PROJECTDIR}"/>
+        </exec>
+    </target>
+
+    <target name="build" description="Build">
+        <echo message="Building..."/>
+        <exec dir="${PROJECTDIR}${project.path}" executable="go" failonerror="true">
+            <arg value="get"/>
+            <arg value="-t"/>
+        </exec>
+    </target>
+
+    <target name="test" description="Run tests">
+        <echo message="Running tests..."/>
+        <exec dir="${PROJECTDIR}${project.path}" executable="go" failonerror="true">
+            <arg value="test"/>
+        </exec>
+        <exec executable="false" errorproperty="testfailure"/>
+    </target>
+
+    <target name="deploy" description="Send binary to remote location and make executable">
+        <echo message="Deploying..."/>
+        <sshexec host="${deploy.host}"
+                 port="${deploy.port}"
+                 username="${deploy.user}"
+                 keyfile="${deploy.ssh_private_key_file}"
+                 trust="true"
+                 command="mkdir -p ${deploy.path}"
+                 failonerror="true"/>
+        <scp file="${GOBINPATH}/${tmpname}"
+             todir="${deploy.user}@${deploy.host}:${deploy.path}/${deploy.filename}"
+             port="${deploy.port}"
+             keyfile="${deploy.ssh_private_key_file}"
+             trust="true"
+             failonerror="true"/>
+    </target>
+
+    <target name="daemon" description="Set up binary as daemon">
+        <echo message="Setting up daemon..."/>
+        <sshexec host="${deploy.host}"
+                 port="${deploy.port}"
+                 username="${deploy.user}"
+                 keyfile="${deploy.ssh_private_key_file}"
+                 trust="true"
+                 command="chmod +x ${deploy.path}/${deploy.filename}"
+                 failonerror="true"/>
+        <copy file="./lib/daemon-skeleton" tofile="${INIT_TMP}" failonerror="true"/>
+        <exec executable="./lib/daemon.sh" failonerror="true">
+            <arg value="${deploy.filename}"/>
+            <arg value="${deploy.path}/${deploy.filename}"/>
+            <arg value="${deploy.env}"/>
+            <arg value="${INIT_TMP}"/>
+        </exec>
+        <scp file="${INIT_TMP}"
+             todir="${deploy.user}@${deploy.host}:/etc/init.d"
+             port="${deploy.port}"
+             keyfile="${deploy.ssh_private_key_file}"
+             trust="true"
+             failonerror="true"/>
+        <sshexec host="${deploy.host}"
+                 port="${deploy.port}"
+                 username="${deploy.user}"
+                 keyfile="${deploy.ssh_private_key_file}"
+                 trust="true"
+                 command="chmod +x /etc/init.d/${INIT_FILENAME};/etc/init.d/${INIT_FILENAME} restart;update-rc.d ${INIT_FILENAME} defaults"/>
+    </target>
+
+    <target name="cleanup">
+        <echo message="Removing temporary files..."/>
+        <delete dir="${PROJECTDIR}"/>
+        <delete file="${GOBINPATH}/${tmpname}"/>
+        <delete file="${INIT_TMP}"/>
+        <record name="${LOGFILE}" action="stop"/>
+    </target>
+
+</project>

@@ -1,0 +1,13 @@
+# Repository settings
+project.repository=https://github.com/<username>/<project>
+project.branch=master
+project.path=/
+
+# Deploy settings
+deploy.host=127.0.0.1
+deploy.port=22
+deploy.user=root
+deploy.ssh_private_key_file=/home/user/.ssh/id_rsa
+deploy.path=/path/to/deploy
+deploy.filename=project
+deploy.env=VAR1=1;VAR2="string value";
