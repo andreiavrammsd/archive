@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  socket-server:
+    build: ./socket-server
+    ports:
+      - "666:666"
+      - "5555:5555"
+    expose:
+      - "5555"
+    restart: on-failure
+    volumes:
+      - ../:/app
+    hostname: socket-server
+  push-server:
+    build: ./push-server
+    volumes:
+      - ../:/app
+    hostname: push-server

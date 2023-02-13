@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client</title>
+    <meta charset="utf-8"/>
+    <script src="autobahn.min.js"></script>
+    <script>
+        var socketServer = 'ws://127.0.0.1:666',
+            username = window.location.hash.substr(1);
+        
+        var getSubscription = function (key) {
+                return key + ':' + username;
+            };
+
+        var conn = new ab.Session(socketServer,
+            function () {
+                conn.subscribe(getSubscription('update'), function (topic, data) {
+                    document.getElementById('subscriptions').innerHTML += 'New update for subscription "' +
+                        topic + '"' + '(' + data.message + ' / ' + data.time + ' ) <br>';
+                });
+                
+                document.getElementById('username').innerText = username;
+            },
+            function () {
+                console.warn('WebSocket connection closed');
+            },
+            {'skipSubprotocolCheck': true}
+        );
+    </script>
+
+</head>
+<body>
+    <p>Username: <strong id="username"></strong></p>
+    <p>Updates:</p>
+    <p><i id="subscriptions"></i></p>
+</body>
+</html>
