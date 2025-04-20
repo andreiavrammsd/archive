@@ -4,6 +4,8 @@
 
 Repeat the following request while changing ids and other properties, and watch the cli response.
 
+Read details in the [Pipelines and workers in Go](https://blog.andreiavram.ro/pipelines-workers-go/) article.
+
 ```
 
 curl -X POST \
