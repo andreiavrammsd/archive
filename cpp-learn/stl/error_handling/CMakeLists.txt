@@ -1,0 +1,6 @@
+add_executable(stl.error_handling.exceptions_basic exceptions_basic.cpp)
+target_link_libraries(stl.error_handling.exceptions_basic pthread)
+add_executable(stl.error_handling.exceptions exceptions.cpp)
+add_executable(stl.error_handling.terminate terminate.cpp)
+add_executable(stl.error_handling.assertions assertions.cpp)
+add_executable(stl.error_handling.system_error system_error.cpp)

@@ -1,0 +1,8 @@
+add_executable(stl.numerics.accumulate_implementation accumulate_implementation.cpp)
+add_executable(stl.numerics.numerical_limits numerical_limits.cpp)
+add_executable(stl.numerics.standard_mathematical_functions standard_mathematical_functions.cpp)
+add_executable(stl.numerics.complex_numbers complex_numbers.cpp)
+add_executable(stl.numerics.complex_numbers_implementation complex_numbers_implementation.cpp)
+add_executable(stl.numerics.valarray valarray.cpp)
+add_executable(stl.numerics.generalized_numerical_algorithms generalized_numerical_algorithms.cpp)
+add_executable(stl.numerics.random_numbers random_numbers.cpp)

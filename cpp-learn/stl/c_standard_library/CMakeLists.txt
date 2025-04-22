@@ -1,0 +1,1 @@
+add_executable(stl.c_standard_library.c_standard_library c_standard_library.c)

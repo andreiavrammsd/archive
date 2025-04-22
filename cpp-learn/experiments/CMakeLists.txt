@@ -1,0 +1,27 @@
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror -fsanitize=undefined -fverbose-asm ") # -fconcepts-diagnostics-depth=2
+
+include(FetchContent)
+
+if (NOT benchmark_POPULATED)
+    FetchContent_Declare(benchmark URL https://github.com/google/benchmark/archive/v1.5.0.zip)
+    FetchContent_Populate(benchmark)
+    add_subdirectory(${benchmark_SOURCE_DIR} ${benchmark_BINARY_DIR})
+endif ()
+
+add_executable(000_placement_new 000_placement_new.cpp)
+add_executable(001_properties_lists 001_properties_lists.cpp)
+add_executable(002_params_vs_struct 002_params_vs_struct.cpp)
+target_link_libraries(002_params_vs_struct benchmark)
+add_executable(003_overload_slice_problem 003_overload_slice_problem.cpp)
+add_executable(004_static_executor_cpp17 004_static_executor_cpp17.cpp)
+add_executable(005_static_executor_encapsulate_tuple 005_static_executor_encapsulate_tuple.cpp)
+add_executable(006_static_map 006_static_map.cpp)
+add_executable(007_iterator_concept 007_iterator_concept.cpp)
+add_executable(008_filtered_value 008_filtered_value.cpp)
+add_executable(009_has_method_concept 009_has_method_concept.cpp)
+add_executable(010_fp 010_fp.cpp)
+add_executable(011_enum_list 011_enum_list.cpp)
+add_executable(012_compile_time_validation 012_compile_time_validation.cpp)
+add_executable(013_lambda_polymorphism 013_lambda_polymorphism.cpp)
+add_executable(014_duplicate_code_policy_based 014_duplicate_code_policy_based.cpp)

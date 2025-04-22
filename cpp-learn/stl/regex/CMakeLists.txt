@@ -1,0 +1,5 @@
+add_executable(stl.regex.regular_expressions regular_expressions.cpp)
+add_executable(stl.regex.regex regex.cpp)
+add_executable(stl.regex.functions functions.cpp)
+add_executable(stl.regex.iterators iterators.cpp)
+add_executable(stl.regex.traits traits.cpp)

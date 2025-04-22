@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.17)
+project(learn-cpp)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS NO)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wmissing-field-initializers -Wextra -pedantic -Werror -fsanitize=undefined -Wno-deprecated-declarations -Wno-deprecated-enum-enum-conversion")
+
+add_subdirectory(algorithms)
+add_subdirectory(data_structures)
+add_subdirectory(numbers)
+add_subdirectory(exercises)
+add_subdirectory(stl)
+add_subdirectory(tests)
+add_subdirectory(templates)
+add_subdirectory(experiments)

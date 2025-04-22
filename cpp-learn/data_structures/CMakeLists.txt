@@ -1,0 +1,6 @@
+add_executable(data_structures.stack stack.cpp)
+add_executable(data_structures.serialize_binary_tree serialize_binary_tree.cpp)
+add_executable(data_structures.queue queue.cpp)
+add_executable(data_structures.singly_linked_list singly_linked_list.cpp)
+add_executable(data_structures.singly_linked_list_unique_ptr singly_linked_list_unique_ptr.cpp)
+add_executable(data_structures.singly_linked_list_thread_safe singly_linked_list_thread_safe.cpp)

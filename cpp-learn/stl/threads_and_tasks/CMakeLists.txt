@@ -1,0 +1,29 @@
+add_executable(stl.threads_and_tasks.threads threads.cpp)
+target_link_libraries(stl.threads_and_tasks.threads pthread)
+
+add_executable(stl.threads_and_tasks.avoiding_data_races avoiding_data_races.cpp)
+target_link_libraries(stl.threads_and_tasks.avoiding_data_races pthread)
+
+add_executable(stl.threads_and_tasks.task_based_concurrency task_based_concurrency.cpp)
+target_link_libraries(stl.threads_and_tasks.task_based_concurrency pthread)
+
+add_executable(stl.threads_and_tasks.example_threads_share_data example_threads_share_data.cpp)
+target_link_libraries(stl.threads_and_tasks.example_threads_share_data pthread)
+
+add_executable(stl.threads_and_tasks.example_async example_async.cpp)
+target_link_libraries(stl.threads_and_tasks.example_async pthread)
+
+add_executable(stl.threads_and_tasks.example_parallel_find example_parallel_find.cpp)
+target_link_libraries(stl.threads_and_tasks.example_parallel_find pthread)
+
+add_executable(stl.threads_and_tasks.example_packaged_task example_packaged_task.cpp)
+target_link_libraries(stl.threads_and_tasks.example_packaged_task pthread)
+
+add_executable(stl.threads_and_tasks.example_wait_for_task example_wait_for_task.cpp)
+target_link_libraries(stl.threads_and_tasks.example_wait_for_task pthread)
+
+add_executable(stl.threads_and_tasks.livelock_deadlock_starvation livelock_deadlock_starvation.cpp)
+target_link_libraries(stl.threads_and_tasks.livelock_deadlock_starvation pthread)
+
+add_executable(stl.threads_and_tasks.race_condition_versus_data_race race_condition_versus_data_race.cpp)
+target_link_libraries(stl.threads_and_tasks.race_condition_versus_data_race pthread)

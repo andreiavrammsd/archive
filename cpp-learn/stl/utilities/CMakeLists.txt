@@ -1,0 +1,8 @@
+add_executable(stl.utilities.time time.cpp)
+add_executable(stl.utilities.compile_time_rational_arithmetic compile_time_rational_arithmetic.cpp)
+add_executable(stl.utilities.type_functions type_functions.cpp)
+add_executable(stl.utilities.type_functions_examples type_functions_examples.cpp)
+add_executable(stl.utilities.minor_utilities minor_utilities.cpp)
+add_executable(stl.utilities.chrono chrono.cpp)
+add_executable(stl.utilities.enable_if enable_if.cpp)
+add_executable(stl.utilities.forward forward.cpp)

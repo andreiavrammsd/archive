@@ -1,0 +1,2 @@
+add_executable(stl.concurrency.atomics_and_volatile atomics_and_volatile.cpp)
+target_link_libraries(stl.concurrency.atomics_and_volatile pthread atomic)

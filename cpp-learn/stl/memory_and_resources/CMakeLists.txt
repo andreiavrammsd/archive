@@ -1,0 +1,8 @@
+add_subdirectory(pimpl)
+
+add_executable(stl.memory_and_resources.smart_pointers smart_pointers.cpp)
+add_executable(stl.memory_and_resources.allocators allocators.cpp)
+add_executable(stl.memory_and_resources.garbage_collection_interface garbage_collection_interface.cpp)
+add_executable(stl.memory_and_resources.uninitialized_memory uninitialized_memory.cpp)
+add_executable(stl.memory_and_resources.weak_counter weak_counter.cpp)
+target_link_libraries(stl.memory_and_resources.weak_counter pthread)
