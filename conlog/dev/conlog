@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+CMD=$1
+
+check_app () {
+    if [ ! -d "$1" ]; then
+        echo $1 not found
+        exit 1
+    fi
+}
+
+init () {
+    for d in $1/* ; do
+        ROOT=$PWD
+        DIR=$ROOT/$d
+        echo $DIR
+        cd $DIR
+
+        go get -t
+
+        EXIT=$?   
+        if [ "$EXIT" = "1" ]; then
+            exit 1
+        fi
+        
+        cd $ROOT
+    done
+}
+
+case $CMD in
+"up")
+    echo
+    echo Installing dependencies
+    init apps
+    init packages
+    
+    sh -c "cd dev && docker-compose up -d --build"
+  ;;
+
+"test")
+    APP=$2
+    sh -c "cd dev && docker-compose exec agent sh -c \"cd /conlog/$APP && go test ...\""
+  ;;
+
+"doc")
+    echo http://localhost:6060/pkg/github.com/andreiavrammsd/conlog/
+    godoc -http=:6060
+    ;;
+
+"logs")
+    echo "cd dev"
+    echo "docker-compose logs -f agent collector"
+  ;;
+
+"coverage")
+    ROOT=$PWD
+    APP=$2
+    cd $APP
+    go test -coverprofile /tmp/cover.out && go tool cover -html=/tmp/cover.out
+    cd $ROOT
+  ;;
+
+*)
+    echo
+    echo Start project: $0 up
+    echo Run tests: $0 test
+    echo See go docs: $0 doc
+    echo See apps logs: $0 logs
+    echo Test coverage: $0 coverage apps/agent
+    echo
+  ;;
+esac

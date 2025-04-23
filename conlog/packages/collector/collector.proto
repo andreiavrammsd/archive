@@ -1,0 +1,46 @@
+syntax = "proto3";
+package collector;
+
+import "google/protobuf/timestamp.proto";
+
+// The Collector service definition.
+service Collector {
+    // Create a new Collector - A simple RPC 
+    rpc CreateCollector (CollectorRequest) returns (CollectorResponse) {}
+}
+
+// Request message for creating a new collector
+message CollectorRequest {
+    message Client {
+        string id = 1;
+        string secret = 2;
+        string hostname = 3;
+        string uuid = 4;
+        string uname = 5;
+    }
+    
+    Client client = 1;
+
+    message Process {
+        string protocol = 1;
+        string UserID = 2;
+        string User = 3;
+        string Name = 4;
+        int32 PID = 5;
+        string Exe = 6;
+        string State = 7;
+        string IP = 8;
+        int64 Port = 9;
+        string ForeignIP = 10;
+        int64 ForeignPort = 11;
+        int32 Inode = 12;
+        google.protobuf.Timestamp Time = 13;
+    }
+    
+    repeated Process processes = 2;
+}
+
+message CollectorResponse {
+    string id = 1;
+    bool success = 2;
+}

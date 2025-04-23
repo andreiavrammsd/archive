@@ -1,0 +1,27 @@
+#!/bin/sh
+
+cure_app () {
+    go test
+}
+
+cure_all () {
+    for d in $1/* ; do
+        ROOT=$PWD
+        DIR=$ROOT/$d
+        echo $DIR
+        cd $DIR
+
+        cure_app
+
+        EXIT=$?   
+        if [ "$EXIT" = "1" ]; then
+            exit 1
+        fi
+        
+        cd $ROOT
+        echo
+    done
+}
+
+cure_all apps
+cure_all packages

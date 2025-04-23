@@ -1,0 +1,11 @@
+agent:
+  client_id: 878765413121543
+  client_secret: "encryptedapikey"
+  protocols:
+      - tcp
+      - tcp6
+      - udp
+      - udp6
+      - raw
+      - raw6
+  delay: 150
