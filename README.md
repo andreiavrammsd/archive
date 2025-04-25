@@ -41,6 +41,7 @@ These projects span various programming languages and technologies, serving as a
 | [go-qa-tools](https://github.com/andreiavrammsd/archive/tree/master/go-qa-tools) | Quality assurance tools in Go. |
 | [go-rabbitmq](https://github.com/andreiavrammsd/archive/tree/master/go-rabbitmq) | RabbitMQ messaging in Go. |
 | [go-scalable-analyzer](https://github.com/andreiavrammsd/archive/tree/master/go-scalable-analyzer) | Scalable file analyzer in Go. |
+| [go-tasks-runner](https://github.com/andreiavrammsd/archive/tree/master/go-tasks-runner) | An approach on running tasks in Go. |
 | [go-update-license-copyright-year](https://github.com/andreiavrammsd/archive/tree/master/go-update-license-copyright-year) | Tool to update license years in files. |
 | [js-random-position-blocks](https://github.com/andreiavrammsd/archive/tree/master/js-random-position-blocks) | JS visual demo using randomly placed blocks. |
 | [libvirt-python-ubuntu](https://github.com/andreiavrammsd/archive/tree/master/libvirt-python-ubuntu) | Compile Libvirt for Python on Ubuntu. |
