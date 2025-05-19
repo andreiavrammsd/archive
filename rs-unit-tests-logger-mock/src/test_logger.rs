@@ -22,7 +22,6 @@ static LOGGER: TestLogger = TestLogger;
 
 thread_local! {
     static LOG_RECORDS: RefCell<Vec<LogRecord>> = const {RefCell::new(Vec::new())};
-
 }
 
 struct TestLogger;
