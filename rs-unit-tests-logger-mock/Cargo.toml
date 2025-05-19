@@ -1,0 +1,38 @@
+[package]
+name = "rs-unit-tests-logger-mock"
+version = "0.1.0"
+edition = "2024"
+description = "How to mock a Rust logger for unit tests to debug logs written to stdout/stderr. Allows easier debugging."
+repository = "https://github.com/andreiavrammsd/archive/tree/master/rs-unit-tests-logger-mock"
+readme = "README.md"
+license = "MIT"
+keywords = ["log", "stdout", "stderr", "testing"]
+categories = ["development-tools::testing", "rust-patterns"]
+publish = false
+
+[dependencies]
+clap = { version = "4.5.37", features = ["derive"] }
+log = "0.4.27"
+
+[profile.dev]
+overflow-checks = true
+lto = false
+panic = "unwind"
+opt-level = 0
+
+[profile.release]
+overflow-checks = true
+lto = "thin"
+panic = "abort"
+opt-level = "z"
+
+[lints.rust]
+unsafe_code = "forbid"
+elided_lifetimes_in_paths = "forbid"
+
+[lints.clippy]
+wildcard_imports = "deny"
+
+[dev-dependencies]
+assert_cmd = "2.0.17"
+predicates = "3.1.3"

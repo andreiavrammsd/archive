@@ -53,9 +53,10 @@ These projects span various programming languages and technologies, serving as a
 | [php-websockets-push-demo](php-websockets-push-demo) | Demo for pushing messages over WebSockets. |
 | [php-websockets-service-demo](php-websockets-service-demo) | Another PHP WebSocket service demo. |
 | [py-newrelic](py-newrelic) | Writing and reading files in Python. |
+| [rs-unit-tests-logger-mock](rs-unit-tests-logger-mock) | How to mock a Rust logger for unit tests to debug logs written to stdout/stderr. Allows easier debugging. |
 
 ## Notes
 
-- These projects are archived and are no longer actively maintained.
+- These projects are archived and are no longer actively maintained or they are just concepts.
 - Feel free to explore and fork any project for your own use.
 - For more recent work, visit [my GitHub profile](https://github.com/andreiavrammsd).

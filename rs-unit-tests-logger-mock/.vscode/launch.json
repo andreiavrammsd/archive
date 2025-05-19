@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug tests",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin",
+                    "rs-unit-tests-logger-mock"
+                ],
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug app",
+            "program": "${workspaceFolder}/target/debug/rs-unit-tests-logger-mock",
+            "args": [
+                "${input:commandArgument}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "rust: cargo build"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commandArgument",
+            "type": "promptString",
+            "description": "Command",
+        }
+    ]
+}
